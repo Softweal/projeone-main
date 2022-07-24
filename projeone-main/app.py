@@ -65,18 +65,20 @@ def do_login():
         student_number = request.forms.get("ogrenciNumarasi")
         student_grade = request.forms.get("ogrenciNotu")
 
-     #   df = pd.DataFrame({'Ad': [student_name],
-           #          'Soyad': [student_surname],
-             #        'No': [student_number],
-              #       'Puan':[student_grade]})
-                     #'Sonuç':[sonuc]}}
-       # df_list.append(df)
-
+        ###
+        """
+        df = pd.DataFrame({'Ad': [ad],
+                     'Soyad': [soyad],
+                     'No': [no],
+                     'Puan':[puan],
+                     'Sonuç':[sonuc]})
+        df_list.append(df)
+        """
         ###
         # write get data to text file
         with open("static/data/ogrenci_not_listesi.txt", "a") as myfile:
             # myfile.write(student_name + " " + student_surname + " " + student_number + " " + student_grade + "\n")
-            myfile.write("{} {} {} {} \n".format(student_name, student_surname, student_number, student_grade))
+            myfile.write("{} {} {} {}\n".format(student_name, student_surname, student_number, student_grade))
         return "Öğrenci başarıyla eklendi."
     except Exception as e:
         return "Öğrenci eklenirken hata oluştu."
@@ -87,7 +89,7 @@ def do_login():
 def ogrenci_listele():
     return dict(
         title="Softweal - Matematik Not Sistemi", 
-        content="Matematik Not Sistemi"
+        content=open("static/data/ogrenci_not_listesi.txt", "r").read()
     )
 
 
